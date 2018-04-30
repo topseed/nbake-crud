@@ -11,13 +11,14 @@ block head
 
 	script.
 		// Initialize Firebase
-		const config = {
+		const fconfig = {
 			apiKey: 'AIzaSyASZVGB4s1uKB4OdxPCcbJ3ebf44KUYdIE',
 			authDomain: 'nbake1-1.firebaseapp.com',
 			projectId: 'nbake1-1'
 		}
-		firebase.initializeApp(config)
-		const db = firebase.firestore()
+		firebase.initializeApp(fconfig)
+		const auth =firebase.auth()
+		const db  = firebase.firestore()
 
 block main
 	p
@@ -29,3 +30,16 @@ block main
 			console.log('page 1 script here')
 		})
 
+		auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+
+		auth.createUserWithEmailAndPassword(email, password)
+
+		auth.sendSignInLinkToEmail(email)
+
+		auth.verifyPasswordResetCode()
+
+		auth.signInWithEmailAndPassword(email, password)
+
+		auth.signOut()
+
+		auth.sendPasswordResetEmail(email)
