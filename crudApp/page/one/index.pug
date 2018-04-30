@@ -1,0 +1,31 @@
+extends /plugin/_layout
+//- App Shell
+
+block head
+	//static binding ex:
+	title #{title}
+
+	script( src='//www.gstatic.com/firebasejs/4.13.0/firebase-app.js')
+	script( src='//www.gstatic.com/firebasejs/4.13.0/firebase-auth.js')
+	script( src='//www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js')
+
+	script.
+		// Initialize Firebase
+		const config = {
+			apiKey: 'AIzaSyASZVGB4s1uKB4OdxPCcbJ3ebf44KUYdIE',
+			authDomain: 'nbake1-1.firebaseapp.com',
+			projectId: 'nbake1-1'
+		}
+		firebase.initializeApp(config)
+		const db = firebase.firestore()
+
+block main
+	p
+	.ui.text.container
+		include _pinc.pug
+
+	script.
+		loadjs.ready('style', function () {
+			console.log('page 1 script here')
+		})
+
