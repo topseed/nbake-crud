@@ -78,20 +78,21 @@ auth.sendPasswordResetEmail('vicmasons@gmail.com')
 	console.log('auth', isUserIn()) // if not, you can gray out the page with a modal
 
 	$('#data').click(function(){
-		let data = $('#f2 [name="dat]').val()
+		let data = $('#f2 [name="dat"]').val()
 		console.log(data)
 
-		// I assume you setup your fire store so only auth user can access:
+		// *** I assume you setup your fire store so only auth user can access:
+		console.log('auth', isUserIn()) // if not, you can gray out the page with a modal
 
 		let newRow = {
-			col1: 'Hello world!',
+			col1: data,
 			col2: true,
 			col3: 3.14159265
 		}
 
 		var newPK = db.collection('table_one').doc()// make PK
 
-		newPK.set(data)//insert
+		newPK.set(newRow)//insert
 			.then(function() { // optional handling
 				console.log('successfull')
 			})
