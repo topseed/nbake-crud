@@ -1,5 +1,5 @@
 
-// specific::
+// specific:
 script.
 	const fconfig = {
 		apiKey: 'AIzaSyASZVGB4s1uKB4OdxPCcbJ3ebf44KUYdIE',
@@ -8,12 +8,12 @@ script.
 	}
 
 // generic ///////////////////////////////////////////////////////////////////
-
-	'//www.gstatic.com/firebasejs/4.13.0/firebase-app.js',
-	'//www.gstatic.com/firebasejs/4.13.0/firebase-auth.js',
-	'//www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js'
+script(src='//www.gstatic.com/firebasejs/4.13.0/firebase-app.js')
+script(src='//www.gstatic.com/firebasejs/4.13.0/firebase-auth.js')
+script(src='//www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js')
 
 script.
+	//CRUD ver 3.05.01
 	firebase.initializeApp(fconfig)
 	const auth =firebase.auth()
 	const db  = firebase.firestore()
@@ -21,7 +21,6 @@ script.
 
 	function isUserIn() { // use this to check if user is auth and valid
 		if(!auth.currentUser) return false
-
 		return auth.currentUser.emailVerified
 	}
 
@@ -39,12 +38,11 @@ script.
 	*/
 
 	auth.onAuthStateChanged(function(user_) {
-		if (user_) { //in, go to member page
-			//console.log('auth', isUserIn())
-			//sendEmailVerification()
+		if (isUserIn()) {
+			console.log('auth', isUserIn())
 		}
-		else {//out, go to home page
-			//console.log('auth','bye')
+		else {
+			console.log('auth','bye')
 		}
 	})
 

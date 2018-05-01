@@ -1,0 +1,28 @@
+
+br
+.ui.segment
+	#f2.ui.form
+		h4.ui.dividing.header NBake Items
+		.field
+			label Data
+			input(type='text', name='dat', placeholder='more data')
+
+		.ui.message.hidden
+		button#data.ui.button(type='submit') Add data
+
+script.
+	loadjs.ready('site', function () {
+
+		$('#data').click(function(){
+			let data = $('#f2 [name="dat]').val()
+			console.log(data, isUserIn())
+
+			// I assume you setup your fire store so only auth user can:
+
+
+		})//click
+
+
+
+	}) //on ready
+
