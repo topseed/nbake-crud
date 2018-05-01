@@ -41,32 +41,58 @@ script.
 		link(rel='icon', href='/favicon.ico')
 		include crud
 	*/
+	// IMPORTANT, in FireStore set:
+	// allow read, write: if request.auth.token.email_verified == true ;
+
 
 	auth.onAuthStateChanged(function(user_) {
 		if (isUserIn()) {
-			console.log('auth', isUserIn())
+			console.log('CRUDauth', isUserIn())
 		}
 		else {
-			console.log('auth','bye')
+			console.log('CRUDauth','bye')
 		}
 	})
 
 	/*
-	join:
-	auth.createUserWithEmailAndPassword('vicmasons@gmail.com', '123123')
-		.then(function(user) {
-			sendEmailVerification()
-		})
-		.catch(function(error){})
+		$('#up').click(function(){
+			let email = $('#f1 [name="email"]').val()
+			let pswd = $('#f1 [name="pswd"]').val()
+			console.log(email,pswd)
+			auth.createUserWithEmailAndPassword(email,pswd)
+				.then(function(user) {
+					sendEmailVerification()
+				})
+				.catch(function(error){
+					//show error in .message
+					console.log(error)
+				})
+		})//click
 
-	auth.signOut()
+		$('#in').click(function(){
+			let email = $('#f1 [name="email"]').val()
+			let pswd = $('#f1 [name="pswd"]').val()
+			console.log(email,pswd)
+			auth.signInWithEmailAndPassword(email,pswd)
+				.then(function(user) {
+					console.log(user)
+				})
+				.catch(function(error){
+					console.log(fail, error)
+				})
+		})//click
 
-	// signIn
-	auth.signInWithEmailAndPassword('vicmasons@gmail.com', '123123')
-		.then(function(user) {})
-		.catch(function(error){})
+		$('#out').click(function(){
+			console.log('out')
+			auth.signOut()
+		})//click
 
-	auth.sendPasswordResetEmail('vicmasons@gmail.com')
+		$('#rest').click(function(){
+			let email = $('#f1 [name="email"]').val()
+			console.log(email)
+			auth.sendPasswordResetEmail(email)
+		})//click
+
 	*/
 
 

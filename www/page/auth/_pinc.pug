@@ -38,8 +38,12 @@ script.
 			let pswd = $('#f1 [name="pswd"]').val()
 			console.log(email,pswd)
 			auth.signInWithEmailAndPassword(email,pswd)
-				.then(function(user) {})
-				.catch(function(error){})
+				.then(function(user) {
+					console.log(user)
+				})
+				.catch(function(error){
+					console.log(fail, error)
+				})
 		})//click
 
 		$('#out').click(function(){
