@@ -7,7 +7,7 @@ script.
 		projectId: 'nbake1-1'
 	}
 
-// generic ///////////////////////////////////////////////////////////////////
+// CRUD generic ///////////////////////////////////////////////////////////////////
 script(src='//www.gstatic.com/firebasejs/4.13.0/firebase-app.js')
 script(src='//www.gstatic.com/firebasejs/4.13.0/firebase-auth.js')
 script(src='//www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js')
@@ -16,8 +16,11 @@ script.
 	//CRUD ver 3.05.01
 	firebase.initializeApp(fconfig)
 	const auth =firebase.auth()
-	const db  = firebase.firestore()
 	auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+
+	const db  = firebase.firestore()
+	const dsettings = {/* your settings... */ timestampsInSnapshots: true}
+	db.settings(dsettings)
 
 	function isUserIn() { // use this to check if user is auth and valid
 		if(!auth.currentUser) return false
@@ -25,8 +28,10 @@ script.
 	}
 
 	function sendEmailVerification() {
-			if(!isUserIn())
+			if(!isUserIn()) {
+				console.log('sending', auth.currentUser)
 				auth.currentUser.sendEmailVerification()
+			}
 			else
 				console.log('no currentUser')
 	}

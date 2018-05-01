@@ -20,8 +20,8 @@ script.
 	loadjs.ready('site', function () {
 
 		$('#up').click(function(){
-			let email = $('#f1 [name="email]').val()
-			let pswd = $('#f1 [name="psw]').val()
+			let email = $('#f1 [name="email"]').val()
+			let pswd = $('#f1 [name="pswd"]').val()
 			console.log(email,pswd)
 			auth.createUserWithEmailAndPassword(email,pswd)
 				.then(function(user) {
@@ -29,12 +29,13 @@ script.
 				})
 				.catch(function(error){
 					//show error in .message
+					console.log(error)
 				})
 		})//click
 
 		$('#in').click(function(){
-			let email = $('#f1 [name="email]').val()
-			let pswd = $('#f1 [name="psw]').val()
+			let email = $('#f1 [name="email"]').val()
+			let pswd = $('#f1 [name="pswd"]').val()
 			console.log(email,pswd)
 			auth.signInWithEmailAndPassword(email,pswd)
 				.then(function(user) {})
@@ -47,7 +48,7 @@ script.
 		})//click
 
 		$('#rest').click(function(){
-			let email = $('#f1 [name="email]').val()
+			let email = $('#f1 [name="email"]').val()
 			console.log(email)
 			auth.sendPasswordResetEmail(email)
 		})//click
