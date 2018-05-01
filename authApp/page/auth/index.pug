@@ -31,15 +31,38 @@ block main
 		})
 
 		auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+		let user
+		function isUserIn() {
+			if(!user) return false
+			return user.emailVerified
+		}
 
-		auth.createUserWithEmailAndPassword(email, password)
+		auth.onAuthStateChanged(function(user) {
+			if (user_) { //in, go to member page
+				user = user_
+				console.log('auth', isUserIn())
+				if(!isUserIn())
+					user_.sendEmailVerification()
+			}
+			else {//out, go to home page
+				user = null
+				console.log('auth','bye')
+			}
+		})// user event
 
-		auth.sendSignInLinkToEmail(email)
+		/*auth.createUserWithEmailAndPassword('vicmasons@gmail.com', '123123')
+			.then(function(user) {})
+		*/
 
-		auth.verifyPasswordResetCode()
+		//auth.signOut()
 
-		auth.signInWithEmailAndPassword(email, password)
+		auth.signInWithEmailAndPassword('vicmasons@gmail.com', '123123')
 
-		auth.signOut()
 
-		auth.sendPasswordResetEmail(email)
+		// Ladyeeh88@yahoo.com
+
+
+
+		//auth.sendPasswordResetEmail(email)
+		//auth confirmPasswordReset(code, newPassword)
+		//auth.sendSignInLinkToEmail('cekvenich.vic@gmail.com')
