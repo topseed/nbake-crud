@@ -1,0 +1,72 @@
+
+// specific::
+script.
+	const fconfig = {
+		apiKey: 'AIzaSyASZVGB4s1uKB4OdxPCcbJ3ebf44KUYdIE',
+		authDomain: 'nbake1-1.firebaseapp.com',
+		projectId: 'nbake1-1'
+	}
+
+// generic ///////////////////////////////////////////////////////////////////
+
+	'//www.gstatic.com/firebasejs/4.13.0/firebase-app.js',
+	'//www.gstatic.com/firebasejs/4.13.0/firebase-auth.js',
+	'//www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js'
+
+script.
+	firebase.initializeApp(fconfig)
+	const auth =firebase.auth()
+	const db  = firebase.firestore()
+	auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+
+	function isUserIn() { // use this to check if user is auth and valid
+		if(!auth.currentUser) return false
+
+		return auth.currentUser.emailVerified
+	}
+
+	function sendEmailVerification() {
+			if(!isUserIn())
+				auth.currentUser.sendEmailVerification()
+			else
+				console.log('no currentUser')
+	}
+
+	// example use ///////////////////////////////////////////////////////////
+	/* put in header so you have data, ex:
+		link(rel='icon', href='/favicon.ico')
+		include crud
+	*/
+
+	auth.onAuthStateChanged(function(user_) {
+		if (user_) { //in, go to member page
+			//console.log('auth', isUserIn())
+			//sendEmailVerification()
+		}
+		else {//out, go to home page
+			//console.log('auth','bye')
+		}
+	})
+
+	/*
+	join:
+	auth.createUserWithEmailAndPassword('vicmasons@gmail.com', '123123')
+		.then(function(user) {
+			sendEmailVerification()
+		})
+		.catch(function(error){})
+
+	auth.signOut()
+
+	// signIn
+	auth.signInWithEmailAndPassword('vicmasons@gmail.com', '123123')
+		.then(function(user) {})
+		.catch(function(error){})
+
+	auth.sendPasswordResetEmail('vicmasons@gmail.com')
+	*/
+
+
+
+
+
