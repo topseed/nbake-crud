@@ -1,5 +1,13 @@
 # nbake-firestore
 
-plugins has curd.pug and auth.
+plugins has curd.pug
 
-Good for datatables.net
+1. Include crud.pug in plugins/layout.
+
+2. Configure FireStore on their home page.
+
+3. Show Auth
+
+4. Demo datatables.net
+
+5. Show CRUD in memebersPro
