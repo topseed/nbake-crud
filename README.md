@@ -2,7 +2,7 @@
 
 plugins has curd.pug
 
-1. Include crud.pug in plugins/layout.
+1. Include crud.pug in /public/plugins/layout.
 
 2. Configure FireStore on their home page.
 
